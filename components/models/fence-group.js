@@ -11,13 +11,13 @@ class FenceGroup {
         this.skuList = spu.sku_list
     }
 
-    initFences(){
+    initFences() {
         const matrix = this._createMatrix(this.skuList)
         const fences = []
 
         const AT = matrix.transpose()
 
-        AT.forEach(r=>{
+        AT.forEach(r => {
             const fence = new Fence(r)
             fence.init()
             fences.push(fence)
@@ -25,8 +25,17 @@ class FenceGroup {
         this.fences = fences;
     }
 
-    _createMatrix(skuList){
-        const m= []
+    eachCell(cb) {
+        for (let i = 0; i < this.fences.length; i++) {
+            for (let j = 0; j < this.fences[i].cells.length; j++) {
+                const cell = this.fences[i].cells[j]
+                cb(cell, i, j)
+            }
+        }
+    }
+
+    _createMatrix(skuList) {
+        const m = []
         skuList.forEach(sku => {
             m.push(sku.specs)
         })

@@ -1,10 +1,13 @@
 // components/fence/index.js
+import number from "../../miniprogram_npm/lin-ui/common/async-validator/validator/number";
+
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    fence:Object
+    fence:Object,
+    x:Number
   },
 
   /**
